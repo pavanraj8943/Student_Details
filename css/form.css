@@ -1,96 +1,103 @@
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  /* background: linear-gradient(135deg, #ffecd2, #fcb69f); */
-  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #b3cde0, #f7f9fb);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  color: #333;
+  height: 100vh;
 }
-
 form {
-  background: #ffffff;
-  padding: 40px 45px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 480px;
-  transition: all 0.3s ease-in-out;
+  width: 800px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 25px;  /* row-gap col-gap */
+  transition: all 0.3s ease;
 }
 
-/* Add hover lift effect */
-form:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* 🧩 Each input container */
-form div {
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Label Styling */
-label {
+form::before {
+  content: "Add Student Details";
+  grid-column: span 2;
+  text-align: center;
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 6px;
-  color: #444;
+  color: #2f3e46;
+  margin-bottom: 5px;
 }
 
-/* 🎨 Input Fields */
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 5px;
+}
+
 input {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  outline: none;
-  transition: all 0.3s;
-}
-
-/* ✨ Alternate Input Background Colors */
-form div:nth-child(odd) input {
-  background-color: #f9f9ff; /* light bluish-white */
-}
-
-
-/* 🩵 Focus State */
-input:focus {
-  border-color: #ff8a5c;
-  box-shadow: 0 0 6px rgba(255, 138, 92, 0.6);
-  background-color: #fff;
-}
-
-/* Placeholder Styling */
-input::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
-
-/* 🌟 Optional Submit Button (if added later) */
-button {
   width: 100%;
+  padding: 9px 12px;
+  border: 1.3px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.25);
+  outline: none;
+}
+
+input[type="file"],
+button {
+  grid-column: span 2;
+}
+
+
+button {
+  margin-top: 10px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
   padding: 12px;
-  background: linear-gradient(135deg, #ff9966, #ff5e62);
-  color: white;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  transition: 0.3s;
-  margin-top: 10px;
-  box-shadow: 0 4px 10px rgba(255, 94, 98, 0.4);
+    margin-left: 95%;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #ff5e62, #ff9966);
-  box-shadow: 0 6px 14px rgba(255, 94, 98, 0.6);
+  background: #2563eb;
+  transform: translateY(-2px);
 }
 
-/* ✨ Smooth Animation for Input Focus */
-input, button {
-  transition: all 0.3s ease;
+@media (max-width: 700px) {
+  form {
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
+
+  form::before {
+    grid-column: span 1;
+  }
+
+  button,
+  input[type="file"] {
+    grid-column: span 1;
+  }
 }
