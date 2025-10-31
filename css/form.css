@@ -101,3 +101,21 @@ button:hover {
     grid-column: span 1;
   }
 }
+
+/* .input-group {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+} */
+
+.error {
+  color: rgba(255, 0, 0, 0.562);
+  font-size: 13px;
+  margin-top: 4px;
+  height: 14px; /* keeps layout steady */
+}
+
+  /* .error-border {
+    border: 1px solid rgb(0, 0, 0) !important;
+  } */

@@ -7,18 +7,21 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
- 
+
   cardsContainer.innerHTML = students.map((student, index) => `
     <div class="card">
-      <a href="./profile.html?index=${index}" class="card-link">
+    
         <img src="${student.userImage || student.pic || ''}" alt="Student Picture">
         <h3>${student.userName || "No Name"}</h3>
         <p><strong>Age:</strong> ${student.userAge || "N/A"}</p>
         <p><strong>Address:</strong> ${student.userAddress || "N/A"}</p>
         <p><strong>DOB:</strong> ${student.userDob || "N/A"}</p>
-      </a>
-       <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
-
+    <p>
+        <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
+        <a href="./profile.html?index=${index}" class="card-link">
+        <button class="view">View more.</button>
+</a>
+</p>
     </div>
   `).join("");
 });
@@ -26,14 +29,14 @@ window.addEventListener("DOMContentLoaded", () => {
 // Simple delete function
 function deleteStudent(index) {
   let students = JSON.parse(localStorage.getItem("students")) || [];
-  students.splice(index, 1); // remove that student
+  students.splice(index, 1);
   localStorage.setItem("students", JSON.stringify(students));
-  location.reload(); // refresh page to show updated list
+  location.reload();
 }
 
 
 // // Function to open the profile page
 // function openProfile(index) {
 //   localStorage.setItem("selectedStudentIndex", index);
-//   window.location.href = "./pages/profile.html";
+//   window.location.href = "./profile.html";
 // }

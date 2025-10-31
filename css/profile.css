@@ -58,3 +58,8 @@ button{
 button:hover {
   background: linear-gradient(135deg, #2575fc, #6a11cb);
 }
+
+.btns{
+  display: flex;
+  gap: 10px;
+}

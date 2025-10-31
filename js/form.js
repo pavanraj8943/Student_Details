@@ -1,19 +1,20 @@
-let inputs = [{ name: "username", id: "userName", placeholder: "Enter your name", type: "text" },
-{ name: "email", id: "userEmail", placeholder: "Enter your email", type: "email" },
-{ name: "age", id: "userAge", placeholder: "Enter your age", type: "number" },
-{ name: "phone", id: "userPhone", placeholder: "Enter phone number", type: "tel" },
-{ name: "address", id: "userAddress", placeholder: "Enter your address", type: "text" },
-{ name: "city", id: "userCity", placeholder: "Enter city", type: "text" },
-{ name: "pincode", id: "userPincode", placeholder: "Enter pincode", type: "number" },
-{ name: "dob", id: "userDob", placeholder: "Select date of birth", type: "date" },
-{name:"Profile Picture", id:"userImage", placeholder:"Choose Image", type:"file"},
-{ name: "password", id: "userPassword", placeholder: "Enter password", type: "password" },
-{ name: "submit", id: "submit", placeholder: "submit", type: "submit" },
+
+const inputs = [
+  { name: "username", id: "userName", placeholder: "Enter your name", type: "text" },
+  { name: "email", id: "userEmail", placeholder: "Enter your email", type: "email" },
+  { name: "age", id: "userAge", placeholder: "Enter your age", type: "number" },
+  { name: "phone", id: "userPhone", placeholder: "Enter phone number", type: "tel" },
+  { name: "address", id: "userAddress", placeholder: "Enter your address", type: "text" },
+  { name: "city", id: "userCity", placeholder: "Enter city", type: "text" },
+  { name: "pincode", id: "userPincode", placeholder: "Enter pincode", type: "number" },
+  { name: "dob", id: "userDob", placeholder: "Select date of birth", type: "date" },
+  { name: "Profile Picture", id: "userImage", placeholder: "Choose Image", type: "file" },
+  { name: "password", id: "userPassword", placeholder: "Enter password", type: "password" },
+  { name: "submit", id: "submit", placeholder: "Submit", type: "submit" },
 ];
 
 function setInputs() {
   let str = "";
-
   inputs.forEach(field => {
     if (field.type === "submit") {
       str += `
@@ -22,38 +23,58 @@ function setInputs() {
         </div>`;
     } else {
       str += `
-        <div>
+        <div class="input-group">
           <label for="${field.id}">${field.placeholder}</label>
           <input name="${field.name}" id="${field.id}" placeholder="${field.placeholder}" type="${field.type}">
+          <small class="error" id="error-${field.id}"></small>
         </div>`;
     }
   });
-
   document.getElementById("form").innerHTML = str;
 }
-
 setInputs();
 
-
-document.getElementById("form").addEventListener('submit', (e) => {
-  e.preventDefault()
+document.getElementById("form").addEventListener("submit", (e) => {
+  e.preventDefault();
   let obj = {};
-  let inputs = document.getElementsByTagName("input");
+  let isValid = true;
 
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].type !== "file" && inputs[i].type !== "submit") {
-      obj[inputs[i].id] = inputs[i].value;
+  // Clear errors
+  document.querySelectorAll(".error").forEach(el => el.textContent = "");
+  document.querySelectorAll("input").forEach(el => el.classList.remove("error-border"));
+
+  inputs.forEach(f => {
+    const input = document.getElementById(f.id);
+    const errorEl = document.getElementById(`error-${f.id}`);
+
+    if (f.type === "submit") return;
+
+    if (f.type === "file") {
+      if (input.files.length === 0) {
+        errorEl.textContent = `Please upload ${f.name}`;
+        input.classList.add("error-border");
+        isValid = false;
+        return;
+      }
+    } else if (input.value.trim() === "") {
+      errorEl.textContent = `${f.placeholder} is required`;
+      input.classList.add("error-border");
+      isValid = false;
+      return;
     }
-  }
 
-  let fileInput = document.getElementById("userImage");
-  let file = fileInput.files[0];
+    if (f.type !== "file") obj[f.id] = input.value.trim();
+  });
 
+  if (!isValid) return;
+
+  const fileInput = document.getElementById("userImage");
+  const file = fileInput.files[0];
 
   if (file) {
-    let reader = new FileReader();
-    reader.onload = function(event) {
-      obj.pic = event.target.result; 
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      obj.pic = event.target.result;
       saveStudent(obj);
     };
     reader.readAsDataURL(file);
@@ -64,16 +85,9 @@ document.getElementById("form").addEventListener('submit', (e) => {
 });
 
 function saveStudent(studentObj) {
- 
   let students = JSON.parse(localStorage.getItem("students")) || [];
   students.push(studentObj);
   localStorage.setItem("students", JSON.stringify(students));
   window.location.href = "../index.html";
 }
-
-
-
-
-
-
 
