@@ -29,6 +29,14 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("back").addEventListener("click",()=>{
     window.location.href = "./index.html";
   })
+
+
+
+  document.getElementById("edit").addEventListener("click",()=>{
+    // window.location.href = "./index.html";
+     window.location.href = `./edit.html?index=${index}`
+  })
+
 });
 
 function deleteStudent(index) {

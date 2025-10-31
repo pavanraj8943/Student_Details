@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
         <p><strong>Address:</strong> ${student.userAddress || "N/A"}</p>
         <p><strong>DOB:</strong> ${student.userDob || "N/A"}</p>
     <p>
-        <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
         <a href="./profile.html?index=${index}" class="card-link">
         <button class="view">View more.</button>
 </a>
@@ -25,14 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
     </div>
   `).join("");
 });
-
-// Simple delete function
-function deleteStudent(index) {
-  let students = JSON.parse(localStorage.getItem("students")) || [];
-  students.splice(index, 1);
-  localStorage.setItem("students", JSON.stringify(students));
-  location.reload();
-}
 
 
 // // Function to open the profile page

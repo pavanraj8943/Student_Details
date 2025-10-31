@@ -31,8 +31,33 @@ function setInputs() {
     }
   });
   document.getElementById("form").innerHTML = str;
+  document.getElementById("form").innerHTML = `
+
+   <h3 class="form-title">New Student Registration</h3>
+    <div class="img-preview">
+      <img id="previewImg" src="" alt="Profile Preview" style="display:none; width:100px; height:100px;  object-fit:cover; border:2px solid #ccc;">
+    </div>
+    ${str}
+  `;
 }
 setInputs();
+
+
+
+document.addEventListener("change", (e) => {
+  if (e.target.id === "userImage" && e.target.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = document.getElementById("previewImg");
+      img.src = event.target.result;
+      img.style.display = "block";
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  }
+});
+
+
+
 
 document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
