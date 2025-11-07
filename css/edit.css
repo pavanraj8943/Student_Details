@@ -1,0 +1,146 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #8e2de2, #a4e000);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  
+  form {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    width: 420px;
+    max-width: 95%;
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  }
+  
+
+  form::before {
+    content: "Edit Student Details";
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Labels */
+  label {
+    font-weight: 600;
+    color: #fff;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  /* Inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  
+ 
+  input[type="file"] {
+    background: transparent;
+  }
+
+  #preview {
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    object-fit: cover;
+    width: 120px;
+    height: 120px;
+  }
+
+  #submit {
+    background: linear-gradient(135deg, #6c63ff, #8364f9);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #submit:hover {
+    background: linear-gradient(135deg, #5145cd, #6c63ff);
+    transform: scale(1.02);
+  }
+  
+  #back {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  #back:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (max-width: 480px) {
+    form {
+      width: 95%;
+      padding: 1.5rem;
+    }
+  
+    form::before {
+      font-size: 1.2rem;
+    }
+  
+    #preview {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  
